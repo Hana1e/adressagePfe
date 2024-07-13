@@ -1,0 +1,31 @@
+.cards-container {
+    display: flex;
+    justify-content: space-around; 
+    align-items: flex-start; 
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+    background-color: #fff;
+    margin: 1.25rem;
+    box-shadow: 0 .25rem .5rem rgba(230, 237, 239, 1);
+    color: #495057;
+    width: 48%;
+}
+
+.card-head {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e6edef;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 1rem 1.5rem;
+}
+
+h1 {
+    color: #495057;
+}

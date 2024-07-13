@@ -1,0 +1,18 @@
+
+<div class="map-container">
+  <div class="map-frame">
+    <div id="map"></div>
+    <div class="search-box">
+      <input type="text" id="search-input" #searchInput placeholder="Rechercher ici">
+      <button class="search-button" (click)="onSearch()">
+        <i class="fas fa-search"></i>
+      </button>
+      <ul *ngIf="searchResults.length > 0" class="suggestions">
+        <li *ngFor="let suggestion of searchResults" (click)="focusOnSuggestion(suggestion, searchInput)">
+          {{ suggestion }}
+        </li>
+      </ul>
+      <button class="reset-button" *ngIf="currentGeoJSONLayer" (click)="resetMap()">Réinitialiser</button>
+    </div>
+  </div>
+</div>

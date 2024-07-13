@@ -1,0 +1,96 @@
+<div class="add-button-container">
+    <button class="add-button" (click)="toggleForm()">
+        <i class="fas fa-plus"></i>
+        Ajouter 
+    </button>
+</div>
+<div *ngIf="showForm" class="card-container">
+    <div class="card">
+        <button type="cancel"  (click)="closeForm()"> <i class="fas fa-times"></i></button>
+        <form  #enqueteForm="ngForm" (ngSubmit)="onSubmit(enqueteForm)" >
+            <div class="form-group">
+                <label for="enqueteur">Enquêteur :</label>
+                <select id="enqueteur" name="enqueteurId" [(ngModel)]="selectedEnqueteurId" required>
+                  <option *ngFor="let enqueteur of enqueteurs" [value]="enqueteur._id">{{ enqueteur.name }}</option>
+              </select>
+                
+              </div>
+              <div class="form-group">
+                <label for="layerNameInput">Nom de la zone :</label>
+                <input type="text" id="layerNameInput" name="layerNameInput" [(ngModel)]="selectedLayerName" placeholder="Saisissez le nom de la couche" required>
+              </div>
+              
+
+              <div class="form-group">
+                <label for="nomLayer">Zone  :</label>
+                <select id="nomLayer" name="layerId" [(ngModel)]="selectedLayerId" required>
+                  <option *ngFor="let layer of layers" [value]="layer._id">{{ layer.layerName }}</option>
+              </select>
+                
+              </div>
+              <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+            </div>  
+              
+              
+            <div class="form-group">
+                <label for="type">Type :</label>
+                <select id="type" name="type" [(ngModel)]="selectedType" required>
+                    <option value="RESIDENTIELLE">Résidentielle</option>
+                    <option value="COMMERCIALE">Commerciale</option>
+                    <option value="INDUSTRIELLE">Industrielle</option>
+                    <option value="RURAL">Rural</option>
+                    <option value="MIXTE">Mixte</option>
+                </select>
+            </div>
+           
+            
+            <div class="form-group">
+              <label for="dateAttribution">Date d'Attribution :</label>
+              <input type="date" id="dateAttribution" name="dateAttribution" [(ngModel)]="selectedDate" required>
+
+
+          </div>
+          <div *ngIf="formError" class="error-message">
+            {{ formError }}
+        </div>
+
+            <div class="form-group">
+                <button type="submit" >Attribuer Zone</button>
+            </div>
+            <div *ngIf="showSuccessMessage" class="success-message">
+              L'enquête a été créée avec succès!
+          </div>
+          
+
+        </form>
+    </div>
+</div>
+
+ 
+<table class="enquetes-table">
+  <thead>
+      <tr>
+          <th>Enquêteur</th>
+          
+          <th>Nom de la zone</th>
+          <th>Type de la zone</th>
+          <th>Date d'Attribution</th>
+          <th>Actions</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let enquete of enquetes">
+          <td>{{ enquete.enqueteurName }}</td>
+          <td>{{ enquete.layerName }}</td>
+          <td>{{ enquete.type }}</td>
+          <td>{{ enquete.dateAttribution | date: 'mediumDate' }}</td>
+          <td>
+              <button class="btn1"><i class="fas fa-map-marker-alt"></i></button>
+              <button class="btn2" (click)="downloadPDF(enquete.enqueteurId, enquete.enqueteurName, enquete.layerName)"><i class="fas fa-file-export"></i></button>
+
+              <button class="btn3" (click)="deleteEnquete(enquete._id)"><i class="fas fa-trash-alt"></i></button>
+          </td>
+      </tr>
+  </tbody>
+</table>

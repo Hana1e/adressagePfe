@@ -1,0 +1,80 @@
+ion-content {
+    --background:#ffff; /*linear-gradient(90deg, #3C5B6F, #153448); Fond clair et neutre */
+  
+    #header {
+      height: 50%;
+      background:#153448; /* Gradient professionnel de bleu */
+      display: flex;
+   
+      color: #ffffff;
+      border-radius: 0 0 30px 30px;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      
+    }
+  
+    #logo {
+      width: auto;
+      img {
+        width: 150%;
+        max-width: 180px; /* Taille appropriée pour le logo */
+      }
+    }
+  
+    ion-card {
+      background-color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,2); /* Ombre subtile */
+      position: absolute;
+      top: 35%; /* Ajustement pour la visibilité */
+      left: 5%;
+      right: 5%;
+      border-radius: 20px;
+      padding: 25px;
+  
+      h1 {
+        font-weight: 500; /* Poids de police modéré */
+        font-size: 22px;
+        color:  #2E304D;
+        margin-bottom: 15px;
+      }
+     
+  
+      ion-item {
+        --background: transparent;
+        --padding-start: 10px;
+        --highlight-height: 0;
+        --border-width: 0px;
+        --border-radius: 8px;
+        margin-bottom: 15px;
+  
+        ion-icon {
+          font-size: 20px;
+          color:  #2E304D; /* Gris doux pour les icônes */
+          margin-right: 15px;
+        }
+  
+        ion-input {
+          font-size: 16px;
+          border-bottom: 1px solid #bdc3c7; /* Subtile bordure inférieure pour élégance */
+        }
+      }
+  
+      ion-input:focus {
+        --border-color: #3498db; /* Bordure en focus bleue pour rester dans le thème */
+      }
+  
+      ion-button {
+        --background:  #153448; /* Bleu doux pour le bouton */
+        margin-top: 20px;
+        height: 50px;
+      }
+      .login-message {
+        margin-top: 20px;
+        color: #2E304D; // ou 'red' pour les erreurs, vous pouvez dynamiser cela si nécessaire
+        text-align: center;
+      }
+      
+    }
+  }
+  

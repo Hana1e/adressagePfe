@@ -1,0 +1,166 @@
+<ion-header >
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  
+  <div id="mapId" style="height: 100%;width:100%">
+   
+      
+    <ion-segment [(ngModel)]="currentMode" (ionChange)="changeMapBackground($event)">
+      <ion-segment-button value="recensement">
+        <ion-label>Mode recensement</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="enquete" (click)="hideQuartiers()" (click)="hideAssignedLayer()">
+        <ion-label>Mode enquête</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-button (click)="activateUserLocation()" style="position: absolute; top: 140px; right: 10px; z-index: 1000;" >
+      <ion-icon name="locate-sharp"></ion-icon>
+    </ion-button>
+    
+
+    <ion-button (click)="afficherIdCouche()"  *ngIf="currentMode === 'recensement'" style="position: absolute; top: 20px; right: 10px; z-index: 1000;">
+      <ion-icon name="layers-sharp"></ion-icon>
+    </ion-button>
+    <ion-button  (click)="showHideQuartiers()" *ngIf="currentMode === 'recensement'"  style="position: absolute; top: 80px; right: 10px; z-index: 1000;">
+      <ion-icon name="map-sharp"></ion-icon>
+    </ion-button>
+   
+    <!--(click)="generateRoute($event)"  (click)="stopTracking($event)"  -->
+    <ion-button *ngIf="trackingMode" style="position: absolute; top: 250px; right: 10px; z-index: 1000;">
+      stop
+    </ion-button>
+
+
+    
+   
+
+    
+    
+    <app-recensement [geoJSON]="geoJSON" 
+    [currentAction]="currentAction" 
+    [typeGeom]=" typeGeom" 
+      [enableInteraction]="enableInteraction" 
+      (requestHideFooter)="hideFooter()" 
+      *ngIf="showRecensement && currentMode === 'recensement'"
+       (resetAfterSubmission)="handleReset()" 
+      (cancelDrawing)=" handleCancelDrawing()" 
+      [lastDrawnItem]="lastDrawnItem"
+      (updateDetails)="handleUpdateDetails($event)"
+      [isEditFormVisible]="isEditFormVisible"
+      (cancelModification)="cancelModification()"
+      
+      >
+    ></app-recensement>
+
+    <app-enquete *ngIf="showEnquete && currentMode === 'enquete'" 
+    [showForm]="showForm"
+    [geometrySelectedSuccess]="geometrySelectedSuccess"
+    (cancel)="cancelEnquete()"  
+    (geometrySelected)="zoomToGeometry($event)"
+    (placePointOnMap)="activatePlacePointMode()"
+    
+    (cancelDrawing)="removeDrawnPoint()"
+    (geometryIdFound)="handleGeometryIdFound($event)"
+    [initialGeometryColor]="initialColor"
+    (positionUpdated)="handlePositionUpdated($event)"
+    [selectedGeometryId]="selectedGeometryId"
+    (trackingStopped)="handleTrackingStopped()"
+    (distanceTraveledUpdated)="handleDistanceTraveledUpdated($event)"
+    (startTrackingEvent)="startTracking($event)"
+    (commencerClicked)="commencerClickedHandler()"
+    (stop)="arreterTrackingHandler()"
+    >
+    </app-enquete>
+
+
+
+
+
+  </div>
+  <div class="button-container" *ngIf="showButtons">
+    <div class="coordinates-container" *ngIf="initialCoordinate">
+      <div class="coordinates-box">
+        Lat: {{ initialCoordinate.lat | number:'1.5-5' }} <br>
+        Lng: {{ initialCoordinate.lng | number:'1.5-5' }}
+      </div>
+      
+    </div>
+    <ion-button  *ngIf="currentMode === 'recensement'" (click)="onOKButtonClicked()">
+      OK
+    </ion-button>
+    <ion-button  *ngIf="currentMode === 'recensement'"(click)="onCancelButtonClicked()">
+      Cancel
+    </ion-button>
+  </div>
+  <div class="button-container"  *ngIf="showButtonsDistance" >
+    <ion-button expand="block" type="submit" fill="solid" class="custom-button" (click)="commencerClickedHandler()"  >Commencer</ion-button>
+    <ion-button  expand="block" type="submit" fill="solid" class="custom-button" (click)="arreterTrackingHandler()">Arreter</ion-button>
+  </div>
+    
+    
+  
+    <ion-fab bottom  slot="fixed" vertical="bottom" horizontal="end"  [style.bottom]="buttonOffset"  *ngIf="currentMode === 'recensement'">
+      <ion-fab-button   > <!--(click)="hideAssignedLayer()" (click)="hideQuartiers()"-->
+        
+        <ion-icon name="location-sharp"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="top"  *ngIf="currentMode === 'recensement'">
+        <ion-fab-button (click)="drawPolyline() "  *ngIf="currentMode === 'recensement'" class="analytics-button">
+          <ion-icon name="analytics-outline"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button  (click)="drawPolygon()"  *ngIf="currentMode === 'recensement'">
+          <ion-icon name="git-merge-outline"></ion-icon>
+        </ion-fab-button>
+      
+      </ion-fab-list>
+  
+    </ion-fab>
+
+    <ion-fab bottom  slot="fixed" vertical="bottom" horizontal="end"  [style.bottom]="buttonOffset"  *ngIf="currentMode === 'enquete'">
+      <ion-fab-button  >
+        <ion-icon name="pin-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-fab-button (click)="selectPolyline()">
+          <ion-icon name="shuffle-outline"></ion-icon>
+        </ion-fab-button>
+        
+        <ion-fab-button (click)="showEnqueteForm()" >
+          <ion-icon name="walk-outline"></ion-icon>
+        </ion-fab-button>
+      
+      </ion-fab-list>
+  
+    </ion-fab>
+    <ion-footer *ngIf="showFooter" style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 999;">
+      <ion-toolbar>
+      
+  
+        <ion-label>
+          <!--<h1>Markeurs</h1>-->
+          <p>{{ polylineCreationDate | date: 'dd/MM/yyyy' }} - {{ polylineCreationDate | date: 'HH:mm' }}</p>
+        </ion-label>
+        <ion-buttons slot="end">
+
+         
+          
+          <ion-button color="light"  (click)="toggleEditFormVisibility()" >
+            <ion-icon name="pencil"></ion-icon>
+          </ion-button>
+          
+          <ion-button color="light"  (click)="presentAlert()">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+          
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+
+  </ion-content>

@@ -1,0 +1,58 @@
+<ion-app>
+  <ion-menu menuId="main-menu" contentId="main"  >
+    <ion-content >
+      <div class="menu-header-bg"></div>
+      <div class="header-content">
+        <img src="../assets/backgrounds/loc2.png" alt="">
+        <ion-label>
+          <h2>hanae</h2>
+          <p>application mobile</p>
+        </ion-label>
+      </div>
+      <div class="action-button">
+        <ion-button  (click)="toggleForm()"  >
+          <ion-icon slot="start" name="add"></ion-icon>Ajouter un dossier </ion-button>
+      </div>
+
+
+      <ion-card *ngIf="showForm">
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Folder name</ion-label>
+            <ion-input placeholder="Enter text"  [(ngModel)]="newFolderName"></ion-input>
+          </ion-item>
+      
+          <ion-button fill="clear" (click)="onSubmit(newFolderName)">Ok</ion-button>
+          <ion-button fill="clear" (click)="onCancel() " >Cancel</ion-button>
+        </ion-card-content>
+      </ion-card>
+      
+
+      <ion-list class="menu-items" lines="none">
+     
+
+        <ion-item (click)="showFolders()">
+          <ion-icon [name]="showFolderList ? 'folder-open-outline' : 'folder-outline'"></ion-icon>Mes dossiers
+        </ion-item>
+
+        <ion-list *ngIf="showFolderList" lines="none" class="folder-list">
+          <ion-item *ngFor="let folder of folders" class="folder-item">
+            <ion-icon name="location-outline" slot="start" ></ion-icon> 
+            <ion-label>{{ folder }}</ion-label> 
+          </ion-item>
+          
+        </ion-list>
+  
+        <ion-button  (click)="logout()">
+          <ion-icon name="exit-outline"></ion-icon>logout
+        </ion-button>
+
+      </ion-list>
+      
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+  
+ 
+  
+</ion-app>

@@ -1,0 +1,31 @@
+<ion-content> 
+    <div id="header">
+      <div id="app-bar">
+        
+      </div>
+  
+      <div id="logo">
+          <img src="assets/backgrounds/logo2.png">
+      </div>
+      
+    </div>
+  
+    <ion-card class="ion-padding">
+      <ion-card-content>
+         <h1>welcome to app name</h1>
+         <p>test</p>
+         <ion-item>
+          <ion-icon name="mail" ></ion-icon>
+          <ion-input type="text" placeholder="Email"  [(ngModel)]="email"></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-icon name="lock-closed"></ion-icon>
+          <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+         <ion-button  (click)="login()" expand="block" >se connecter</ion-button>
+         
+         <p>Forgot password?</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>

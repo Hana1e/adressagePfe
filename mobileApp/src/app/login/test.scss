@@ -1,0 +1,106 @@
+ion-content{
+    --background:#ADBC9F;
+    
+    #header{
+        height: 50%;
+       // background:  #436850;
+        background:#163020;
+        
+        display: flex;
+        flex-direction: column;
+        color: #fff;
+        border-radius: 0 0 30px 30px;
+        position: relative;
+       
+
+        #app-bar{
+            height: 60px;
+            padding: 0 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            ion-icon{
+                font-size: 24px;
+ 
+            }
+        }
+
+        #logo{
+                width: 250px;
+                height: 70px;
+                
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 20px;
+                align-self: center;
+                margin-top: 20%;
+
+                img{
+                    width: 300%;
+                }
+            }
+      
+
+           
+        }
+
+        ion-card{
+           // background-color: ;
+            box-shadow: none;
+            position: absolute;
+            top: 37%;
+            left: 5%;
+            right: 5%;
+            border-radius: 20px;
+
+            h1{
+                font-weight: bold;
+                font-size: 19px;
+                text-align: center;
+                margin-bottom: 5px;
+            }
+            p{
+                text-align: center;
+                font-size: 16px;
+                margin-bottom: 45px;
+            }
+
+            ion-item{
+                --background:#efefef;
+                --padding-start:10px;
+                --highlight-height:0;
+                --border-width:0;
+                --padding-top:0;
+                --min-height:40px;
+                margin-bottom: 15px;
+                border-radius: 5px;
+    
+                ion-icon{
+                    font-size: 18px;
+                }
+    
+                ion-input{
+                    margin-left: 10px;
+                    font-size: 14px;
+                }
+            }
+    
+            ion-button{
+                --background: #163020;
+                margin-top: 25px;
+                height: 40px;
+                --box-shadow:none;
+                text-transform: initial;
+                font-size: 16px;
+                letter-spacing: 0;
+                font-weight: 400;
+            }
+        }
+   
+}
+@media (max-width: 600px) {
+    .app-logo img {
+      width: 120px; /* Smaller logo on smaller screens */
+    }}

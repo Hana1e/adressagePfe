@@ -1,0 +1,248 @@
+.map-container {
+  position: relative;
+  height: 450px;
+  padding-top: 15px;
+  .map-frame {
+    border: 2px solid #0f172a;
+    height: 100%;
+    position: relative;
+
+    #map {
+      height: 100%;
+
+      .form-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        width: 300px;
+        
+        
+
+        .card {
+          position: relative;
+          background-color: white;
+          padding: 15px;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          .loading-overlay {
+           
+           
+            background: rgba(100, 100, 100, 0.507);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          p {
+            font-size: 16px; 
+            color: #333; 
+            margin-bottom: 10px;
+            font-weight: bold;
+          }
+          .fa-times {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin-top: 10px;
+            margin-right: 10px; 
+            cursor: pointer;
+          }
+
+          
+
+          .custom-form {
+            label {
+              display: block;
+              margin-bottom: 10px;
+            }
+
+            input {
+              width: 100%;
+              padding: 8px;
+              margin-bottom: 15px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+            }
+
+            button {
+              width: 100%;
+              padding: 10px;
+              background-color: #007bff;
+              color: #fff;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+            }
+          }
+          .success-message {
+            color: green;
+            font-size: 12px;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid green;
+            border-radius: 5px;
+            text-align: center;
+          }
+          
+          // Ajoutez ces règles pour le message d'erreur
+          .error-message {
+            color: red;
+            font-size: 12px;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid red;
+            border-radius: 5px;
+            text-align: center;
+
+          }
+          .custom-select {
+            width: 100%;                
+            height: 60%;               
+            background-color: #fff;      
+            border: 1px solid #ccc;      
+            padding: 8px;                
+            overflow-y: auto;           
+            box-shadow: 0 2px 4px rgba(0, 59, 114, 0.1); 
+            border-radius: 5px;         
+            cursor: pointer;            
+          }
+          
+          .custom-select:focus {
+            border-color: #007bff;      
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); 
+          }
+          
+          .custom-select option {
+            padding: 7px;                
+            cursor: pointer;             
+          }
+          
+        }
+      }
+    }
+
+    .btn1 {
+      position: absolute;
+      top: 2%;
+      right: 2%;
+      z-index: 999;
+      padding: 10px;
+      border: none;
+      border-radius: 20%;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+
+      i {
+        font-size: 15px;
+      }
+    }
+
+    .btn2 {
+      position: absolute;
+      top: 14%;
+      right: 2%;
+      z-index: 999;
+      padding: 10px;
+      border: none;
+      border-radius: 20%;
+      background-color: #207033;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #125221;
+      }
+
+      i {
+        font-size: 15px;
+      }
+    }
+
+
+    .btn3 {
+      position: absolute;
+      top: 26%;
+      right: 2%;
+      z-index: 999;
+      padding: 10px;
+      border: none;
+      border-radius: 20%;
+      background-color: #8e2997;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #780e81;
+      }
+
+      i {
+        font-size: 15px;
+      }
+    }
+
+   
+    
+    
+
+    .legend {
+      position: absolute;
+      top: 38%;
+      right: 2%;
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 999;
+    
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    
+        li {
+          display: flex;
+          align-items: center;
+          margin-bottom: 5px;
+
+          
+    
+          span {
+            width: 10px;
+            height: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+          }
+          
+          
+        }
+      }
+    }  
+  }  
+}
+
+button[type="submit"] {
+  background-color: #4CAF50; 
+  color: white;          
+  padding: 6px 11px;   
+  margin-top: 20px;      
+  border: 2px solid transparent; 
+  border-radius: 4px;     
+  cursor: pointer;        
+  transition: all 0.3s ease; 
+}
+
+/* Effet de survol sur le bouton */
+button[type="submit"]:hover {
+  background-color: #1e5a20; 
+  border-color: #777;    
+}
+

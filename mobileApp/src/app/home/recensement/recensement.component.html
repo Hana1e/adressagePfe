@@ -1,0 +1,191 @@
+<!-- Formulaire pour polyline -->
+<ion-card  *ngIf="currentMode === 'recensement' && showRecensement && currentAction === 'polyline'">
+  <ion-card-header>
+    <ion-card-subtitle>Veuillez remplir ce formulaire pour la polyline</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item>
+      <ion-label position="floating">Type de voie</ion-label>
+      <ion-select interface="popover" [(ngModel)]="typedevoie">
+        <ion-select-option value="RUE">Rue</ion-select-option>
+        <ion-select-option value="AVENUE">Avenue</ion-select-option>
+        <ion-select-option value="BOULEVARD">Boulevard</ion-select-option>
+        <ion-select-option value="ROUTE">Route</ion-select-option>
+        <ion-select-option value="CHEMIN">Chemin</ion-select-option>
+        <ion-select-option value="ALLEE">Allée</ion-select-option>
+        <ion-select-option value="IMPASSE">Impasse</ion-select-option>
+        <ion-select-option value="RUELLE">Ruelle</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="nomOfficiel" label="Nom officiel" label-placement="floating" fill="outline" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="nomUsage" label="Nom d'usage" label-placement="floating" fill="outline" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input [(ngModel)]="numeroVoie" label="Numéro de la voie" label-placement="floating" fill="outline" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Statut</ion-label>
+      <ion-select interface="popover" [(ngModel)]="statut">
+        <ion-select-option value="Propriété privée">Propriété privée</ion-select-option>
+        <ion-select-option value="Domanialité publique">Domanialité publique</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text class="superficie-distance ">
+      <p>informations supplémentaires Distance: {{ distance | number: '1.2-2' }} m</p>
+    </ion-text>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button (click)="submitData()" expand="block" type="submit" fill="solid">Soumettre</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button (click)="cancelData()" expand="block" type="submit" fill="solid">Annuler</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+
+
+<!-- Formulaire pour edit polyline -->
+<ion-card  *ngIf="  currentMode === 'recensement' &&   isEditFormVisible &&  typeGeom === 'polyline'">
+  <ion-card-header>
+    <ion-card-subtitle>Modification de la polyligne</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button (click)="modifyData()" expand="block" type="submit" fill="solid">modifier</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button (click)=" cancelModify()" expand="block" type="submit" fill="solid">Annuler</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+
+
+
+
+<!-- Formulaire pour polygon -->
+<ion-card *ngIf="currentMode === 'recensement' && showRecensement && currentAction === 'polygon'">
+  <ion-card-header>
+    <ion-card-subtitle>Veuillez remplir ce formulaire pour le polygon</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item>
+      <ion-label position="floating">Entité</ion-label>
+      <ion-select interface="popover" [(ngModel)]="selectedEntity" (ionChange)="onSelectEntity()">
+        <ion-select-option value="quartier">Quartier</ion-select-option>
+        <ion-select-option value="immeuble">Type d’immeuble</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="selectedEntity === 'quartier' || selectedEntity === 'immeuble'">
+      <ion-label position="floating">Description</ion-label>
+      <ion-textarea [(ngModel)]="description" name="description" required></ion-textarea>
+    </ion-item>
+    
+    <ion-item *ngIf="selectedEntity === 'quartier'">
+      <ion-label position="floating">Nom Quartier</ion-label>
+      <ion-input [(ngModel)]="nomQuartier" name="nomQuartier" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="selectedEntity === 'quartier'">
+      <ion-label position="floating">Code postal</ion-label>
+      <ion-input [(ngModel)]="codePostal" name="codePostal" type="number" ></ion-input>
+  </ion-item>
+  
+
+    <ion-item *ngIf="selectedEntity === 'quartier'">
+      <ion-label>Type de quartier </ion-label>
+      <ion-select interface="popover"  [(ngModel)]="typeQuartier">
+        <ion-select-option value="residentiel">Résidentiel</ion-select-option>
+        <ion-select-option value="commercial">Commercial</ion-select-option>
+        <ion-select-option value="industriel">Industriel</ion-select-option>
+        <ion-select-option value="mixte">Mixte</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="selectedEntity === 'immeuble'">
+      <ion-label>Type d'immeuble</ion-label>
+      <ion-select interface="popover"  [(ngModel)]="typeImmeuble">
+        <ion-select-option value="terrain">Terrain nu</ion-select-option>
+        <ion-select-option value="residence">Résidence</ion-select-option>
+        <ion-select-option value="Restaurant">Restaurant</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="selectedEntity === 'immeuble'">
+      <ion-label position="floating">Nombre d'étages</ion-label>
+      <ion-input [(ngModel)]="nombreEtages" name="nombreEtages" type="number"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="selectedEntity === 'immeuble'">
+      <ion-label position="floating">Nom</ion-label>
+      <ion-input [(ngModel)]="nomImmeuble" name="nomQuartier" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="selectedEntity === 'immeuble'">
+      <ion-label>Quartier</ion-label>
+      <ion-select interface="popover" [(ngModel)]="Quartier">
+        <ion-select-option *ngFor="let quartier of quartiers" [value]="quartier._id">{{ quartier.nomQuartier }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+
+
+
+    <ion-text class="warning-message" *ngIf="showWarningMessage">
+      <p>Vous devez choisir un quartier avant de soumettre.</p>
+    </ion-text>
+
+    <ion-text class="superficie-distance " *ngIf="area !== undefined">
+      <p>Informations supplémentaires Superficie: {{ area | number }} m²</p> 
+    </ion-text>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button (click)="submitData()" expand="block" type="submit" fill="solid">Soumettre</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button (click)="cancelData()" expand="block" type="submit" fill="solid">Annuler</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+
+
+<!-- Formulaire  pour edit polygon -->
+<ion-card *ngIf="currentMode === 'recensement' &&  isEditFormVisible &&  typeGeom === 'polygon'">
+  <ion-card-header>
+    <ion-card-subtitle>Modification du polygone</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item>
+      <ion-input [(ngModel)]="selectedPolygonAttributes.nomEntite" label="Nom du quartier" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button (click)="modifyData()" expand="block" type="submit" fill="solid">modifier</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button (click)=" cancelModify()" expand="block" type="submit" fill="solid">Annuler</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+

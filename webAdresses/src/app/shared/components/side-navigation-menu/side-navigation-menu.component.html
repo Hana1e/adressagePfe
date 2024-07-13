@@ -1,0 +1,24 @@
+<div class="menu-container">
+  <dx-tree-view
+   
+    keyExpr="path"
+    selectionMode="single"
+    [focusStateEnabled]="false"
+    expandEvent="click"
+    (onItemClick)="onItemClick($event)"
+    width="100%">
+  </dx-tree-view>
+
+  
+</div>
+<!-- [items]="items"-->
+<!--<ng-container *ngIf="showSearchInput">
+    <div class="search-input-container">
+      <div class="input-wrapper">
+        <input type="text" placeholder="Latitude, Longitude" class="search-input">
+        <button class="search-button" >
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </ng-container>-->

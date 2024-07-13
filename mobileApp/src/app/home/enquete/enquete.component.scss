@@ -1,0 +1,130 @@
+ion-card {
+    --background: rgba(244, 247, 250, 0.8);
+    max-width: 500px; /* Limite la largeur maximale de la carte sur grands écrans */
+    margin: auto; /* Centrer la carte horizontalement */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 999;
+  }
+  
+  /* Réactivité pour les appareils plus petits */
+  @media (max-width: 768px) {
+  ion-card {
+    max-width: 100%; /* Utiliser toute la largeur sur petits écrans */
+    margin: 10px; /* Moins de marge sur les petits écrans */
+  }
+  }
+  
+  ion-card-header {
+    color: #333;
+    padding: 16px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    text-align: center;
+  }
+  
+  ion-card-subtitle {
+    color: #606060;
+  }
+  
+  ion-card-content {
+    padding: 20px;
+    max-height: 600px; /* Hauteur maximale pour le contenu */
+    overflow-y: auto;
+    ion-item {
+      --padding-start: 0;
+      --inner-padding-end: 0;
+      --inner-padding-top: 0;
+      --inner-padding-bottom: 0;
+      --background: rgba(244, 247, 250, 0.8);
+      --padding-end: 0;
+      --padding-top: 0;
+      --padding-bottom: 0;
+      margin-bottom: 20px; /* Ajuster selon vos préférences */
+    }
+    
+    ion-input, ion-select {
+      --padding-start: 10px;
+      --padding-end: 10px;
+      --padding-top: 10px;
+      --padding-bottom: 10px;
+      --background: rgba(244, 247, 250, 0.8);
+      --border-radius: 8px;
+      --border-style: solid;
+      --border-width: 2px;
+      --border-color: #ccc;
+      --placeholder-color: #888;
+      --placeholder-font-style: italic;
+      transition: border-color 0.3s ease;
+    }
+    
+    ion-input:focus-within, ion-select:focus-within {
+      --border-color: #3880ff; /* Couleur de bordure lors de la mise au point */
+    }
+    
+    ion-select {
+      --min-width: 300px; 
+      --placeholder-opacity: 0.8;
+      --placeholder-font-weight: bold;
+    }
+    
+    /* Ajustement spécifique pour les petits écrans */
+    @media (max-width: 768px) {
+      ion-item {
+        margin-bottom: 15px;
+      }
+    }
+    
+  }
+  
+  
+  ion-button {
+    margin-top: 10px;
+    background-color: #3880ff;
+    color: white;
+    --border-radius: 4px;
+    --padding-vertical: 10px;
+    --padding-horizontal: 14px;
+    transition: background-color 0.3s ease;
+   
+  }
+  
+  
+  ion-button:hover {
+    background-color: #1a73e8;
+  }
+  
+  /* Réduire la taille des boutons sur les petits écrans */
+  @media (max-width: 576px) {
+  ion-col {
+    size: 12; /* Prendre toute la largeur pour les petits écrans */
+  }
+  
+  }
+
+  ion-button.custom-button {
+    --background: rgba(244, 247, 250, 0.8);
+    color: #000000; 
+    --background-hover: rgba(201, 201, 201, 0.5); 
+    --background-activated: rgba(197, 197, 197, 0.5); 
+    --background-focused: rgba(196, 196, 196, 0.5);
+    background-color: rgba(244, 247, 250, 0.8);
+    border-radius: 5px;
+  }
+
+  .button-container {
+    
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: fit-content; 
+   
+  }
+  
+  
+  

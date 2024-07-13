@@ -1,0 +1,162 @@
+.card-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.card {
+  position: relative;
+  background-color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.card form > div {
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-column-gap: 10px;
+  align-items: center;
+}
+
+.card label {
+  margin-bottom: 3px;
+  font-size: 14px;
+}
+
+.card input,
+.card select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.card button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.fa-times {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 10px; 
+  margin-right: 10px; 
+  cursor: pointer;
+}
+.error-message {
+  color: #ff6b6b; 
+}
+
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid red;
+  border-radius: 5px;
+  text-align: center;
+
+}
+.success-message {
+  color: green;
+  font-size: 12px;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid green;
+  border-radius: 5px;
+  text-align: center;
+}
+.add-button-container {
+  margin-bottom: 8px;
+  margin-top: 2px; 
+}
+.add-button {
+  padding: 10px 20px;
+  background-color: #00cc66;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-button:hover {
+filter: brightness(1.2);
+}
+
+
+
+.enquetes-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+   // border: 1px solid #ddd; si je veux bordure
+    padding: 12px;
+    text-align: left;
+    font-weight: normal; 
+    font-size: 14px;
+  }
+
+  th {
+    background-color: #0f172a;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #e6e6e6; 
+  }
+
+  .btn1 {
+      background-color: #0B4899;
+     
+    }
+  
+    .btn2 {
+      background-color: #BE2B23;
+     
+    }
+  
+    .btn3 {
+      background-color: #536A29;
+     
+    }
+
+   
+
+  button {
+    padding: 8px 16px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    filter: brightness(1.2);
+  }
+}

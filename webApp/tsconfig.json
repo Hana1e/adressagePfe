@@ -1,0 +1,53 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+  
+    "strictPropertyInitialization": false,
+    "outDir": "./dist/out-tsc",
+    "strict": true,
+    "noImplicitAny": false,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "lib": [
+      "ES2022",
+      "dom"
+    ]
+  },
+  
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "include": [
+    "src",
+    "src/declarations/shpjs.d.ts" ,
+    "src/declarations/shp.d.ts",
+    "src/declarations/leaflet.d.ts",
+    "src/declarations/pako.d.ts",
+    "src/declarations/jszip.d.ts",
+    "src/declarations/turf.d.ts",
+
+
+  ],
+  "types":[
+    "leaflet",
+    "leaflet-fullscreen",
+    "leaflet-draw",
+    
+  ]
+
+}

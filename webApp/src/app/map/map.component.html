@@ -1,0 +1,73 @@
+<button type="submit" (click)="toggleForm()" >+ Ajouter Zone d'adressage</button>
+<div class="map-container">
+  <div class="map-frame">
+    <div id="map">
+      <div class="form-container" *ngIf="showForm">
+        <div class="card">
+          <button type="cancel" (click)="closeForm()"> <i class="fas fa-times"></i></button>
+          <p>Veuillez remplir le formulaire</p>
+          <form  (submit)="zipFile && !errorMessage && submitFile(); $event.preventDefault()" class="custom-form">
+          <!--<label for="file">Fichier :</label>-->
+            
+            <input type="file" id="file" name="file" (change)="handleFileInput($event)" class="form-control">
+            
+            <div *ngIf="errorMessage" class="error-message">
+              {{ errorMessage }}
+            </div>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+            <div *ngIf="successMessage" class="success-message">
+              {{ successMessage }}
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div *ngIf="showLayerForm" class="form-container">
+        <div class="card">
+          <button type="cancel" (click)="closeLayerForm()"> <i class="fas fa-times"></i></button>
+          <p>Choisissez les zones à afficher</p>
+          
+        <form (submit)="handleLayerSelection($event)">
+          <div *ngIf="loading" class="loading-overlay">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </div>
+          <div class="custom-select-container">
+          <select #layerSelect multiple="multiple" class="custom-select">
+            
+            <option *ngFor="let layer of allLayers" [value]="layer._id">{{ layer.layerName }}</option>
+          </select>
+        </div>
+          <button type="submit" class="btn btn-primary">Afficher les couches</button>
+         
+          
+        </form>
+        
+        
+      </div>
+      
+      
+      
+      </div>
+
+
+
+      <div *ngIf="showLayerName" class="form-container">
+        <div class="card">
+          <button type="cancel" (click)="closeForm()"> <i class="fas fa-times"></i></button>
+          <p>Nom de la zone</p>
+          <form class="custom-form"> 
+          <input type="text" [(ngModel)]="layerName" name="layerName" placeholder="Enter name here..." class="form-control">
+          <button (click)="saveLayerName()" >envoyer </button>
+        </form>
+        </div>
+      </div>
+      
+      
+
+    <button class="btn1 btn btn-secondary" (click)="loadLayers()" ><i class="fal fa-layer-group"></i></button>
+    <button class="btn2 btn btn-secondary" (click)="toggleLayerForm()"><i class="fa fa-image"></i></button>
+    <button class="btn3 btn btn-secondary"  (click)="changeMapBackground()" ><i class="fa fa-map"></i></button>
+    
+  </div>
+</div>
+</div>
